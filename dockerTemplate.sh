@@ -41,16 +41,7 @@ fi
 
 # Instalar y ejecutar Portainer con los puertos correctos
 echo "Installing Portainer"
-docker run -d \
-  --name portainer \
-  --restart=always \
-  -p 8000:8000 \  # Puerto para otros servicios de Portainer
-  -p 8443:9443 \  # HTTPS (host 8443 al contenedor 9443)
-  -p 8880:9000 \  # HTTP (host 8880 al contenedor 9000)
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
-  portainer/portainer-ce:2.20.1
-
+docker run -d --name=portainer --restart=always -p 8000:8000 -p 8443:9443 -p 8880:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.20.1
 # Confirmar la instalación y proporcionar la dirección de acceso
 echo "Installation complete ✅"
 public_ip=$(curl -s4 icanhazip.com)
